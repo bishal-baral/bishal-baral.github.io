@@ -203,7 +203,7 @@ The features of nanotwiitter are the following:
 
 ### NanoTwitter Project Report
 
-<img src="https://github.com/bishal-baral/bishal-baral.github.io/blob/main/nanotwitter-images/homepage.png" width="1000">
+<img src="https://raw.githubusercontent.com/bishal-baral/bishal-baral.github.io/main/nanotwitter-images/homepage.png" width="1000">
 
 NanoTwitter is the baby version of the microblogging website -- Twitter. We started by creating a mini clone of the Twitter web application to replicate the basic features available on the website like account creation, simple user interaction and timeline and tweet database search. We used the lightweight Ruby web-framework Sinatra and PostgreSQL database as our basic stack and used Heroku to deploy our application to the cloud. After setting up our repository on GitHub with the basic configurations, we started thinking out loud the associations and sketching the logical [database relationships](https://dbdiagram.io/d/61fec79485022f4ee543ce4e) for the app. We tested the models and migrations creating fake seed data using the [faker](https://github.com/faker-ruby/faker) gem both manually and through unit tests.
 
@@ -213,7 +213,7 @@ The next step was to build the User Interface for our nanotwitter app. We initia
 
 At this stage, we were prepared to build our basic functionalities. After a user logged in, they should be able to search for users/hashtags/tweets, follow users and view their tweets in their timeline. They should be able to create their own tweets, like other tweets and view their list of follower and the followees. Furthermore, after the mentioned features were implemented, it was essential to test out these functionalities so many more tests were added to the suite and below is the screenshot of the test results.
 
-<img src="https://github.com/bishal-baral/bishal-baral.github.io/blob/main/nanotwitter-images/tests.png" width="1000">
+<img src="https://raw.githubusercontent.com/bishal-baral/bishal-baral.github.io/main/nanotwitter-images/tests.png" width="1000">
 
 #### Preparation for Load Testing
 
@@ -319,7 +319,7 @@ Instead, we made the reset job a background process so that the browser gives an
 ##### Queuing
 Another scaling technique highly applicable to our service oriented architechture was queuing. Instead of making synchronous calls to the API endpoint of a given service, it was quite obvious that there needed a way to request ```CreateTweetService``` to create a tweet non-blocking way. We used the [bunny]() gem to use the [RabbitMQ]() service as our messaging queue and published tweet creation requests as json to our RabbitMQ client from the main nanotwitter app. In addition, ```CreateTweetService``` was configured to subscribe to the tweet creation queue and create the tweets as the requests come in. This decreased both the number of timeouts and the average response times which was a significant improvement from the previous attempts for the same payload.
 
-<img src="https://github.com/bishal-baral/bishal-baral.github.io/blob/main/nanotwitter-images/queuing_test.png" width="500">
+<img src="https://raw.githubusercontent.com/bishal-baral/bishal-baral.github.io/main/nanotwitter-images/queuing_test.png" width="500">
 
 ##### Debugging and Logging
 Debugging nanoTwitter got more complicated as we increased the client load and we needed a proper tool to monitor and log events after a request was made to the server. We chose [PaperTrail](https://www.papertrail.com/) to record our logs in the cloud and use its fwatures to search through the logs more efficiently and debug our app.
@@ -335,7 +335,7 @@ Sinatra, by default was using ```Thin``` as its application server. We decided t
 
 #### Final Thoughts
 
-<img src="https://github.com/bishal-baral/bishal-baral.github.io/blob/main/nanotwitter-images/architechture.png" width="1000">
+<img src="https://raw.githubusercontent.com/bishal-baral/bishal-baral.github.io/main/nanotwitter-images/architechture.png" width="1000">
 
 The above is the final architechture of our app and we have other ideas in mind that could make our app scale even better. Searching in our nanoTwitter app can be improved by tokenizing the search queries and everytime a new data is created in the database, we could update a search token's respective cache in the background or through messaging queues so that search query results are instant. 
 
